@@ -6,6 +6,7 @@ import { useUserAuth } from "../_utils/auth-context"; // Imported useUserAuth cu
 import { getItems, addItem } from '../_services/poultry-pump-service'; // Imported getItems and addItem functions from shopping-list-service
 import Header from '../components/headers/poultryHeader';
 import Workout from '../components/workout/workout';
+import FinishWorkout from '../components/workout/finishWorkout';
 
 
 
@@ -118,7 +119,7 @@ export default function App() {
 </select>       
       </form>
 
-      <Workout  delExercise={delChosenExercise} delSet={delChosenExerciseSet} exercises={chosenExercises}/>
+      <Workout  delExercise={delChosenExercise} delSet={delChosenExerciseSet} exercises={chosenExercises} finWorkout={FinishWorkout}/>
 
      
       
@@ -143,8 +144,8 @@ export default function App() {
       </div>
       ) : (
         <div>
-          {exercises.map((exercise) => (
-          <Exercise addChosen={addChosenExercise} key={Math.random()} name={exercise.name} />
+          {exercises.map((exercise,index) => (
+          <Exercise addChosen={addChosenExercise} key={index} name={exercise.name} />
         ))}
 
         </div>

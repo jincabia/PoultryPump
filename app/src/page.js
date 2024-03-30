@@ -38,7 +38,7 @@ export default function App() {
                         You are signed in as <strong>{user.email}</strong>
                     </p>
                     <p>
-                    <strong><Link href="../src/exercisepage">Poultry Pump</Link></strong>
+                    <strong><Link href="../src/homepage">Poultry Pump</Link></strong>
 
                     </p>
                     <button onClick={handleSignOut}>Sign out</button>

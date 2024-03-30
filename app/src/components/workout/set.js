@@ -1,23 +1,43 @@
 'use client'
 import { useState} from 'react';
 
-export default function SetRow({number,delSet})
+export default function SetRow({number,delSet,getRepsWeight})
 {
+
+  /**const item1 = {
+        name: "milk, 4 L 🥛",
+        quantity: 1,
+        category: "dairy",
+      }; */
+
   //Name for 
     const [reps, setReps] = useState (0);
     const [weight, setWeight] = useState (0);
-    const [numberID,setNumberID ] = useState(number)
+
+
+    
 
     const changeWeight = event =>
     {
-        setWeight(event.target.value);
+        // setWeight(event.target.value);
+        // getRepsWeight(number,weight,reps);
+
+        const newWeight = parseInt(event.target.value);
+        setWeight(newWeight);
+        getRepsWeight(number, newWeight, reps);
         
     }
 
     const changeReps = event =>
     {
-        // event.prevent.default;
-        setReps(event.target.value);
+        // // event.prevent.default;
+        // setReps(event.target.value);
+        // getRepsWeight(number,weight,reps);
+
+
+        const newReps = parseInt(event.target.value);
+        setReps(newReps);
+        getRepsWeight(number, weight, newReps);
     }
 
     return(
@@ -25,7 +45,7 @@ export default function SetRow({number,delSet})
 
         {/* Weight  */}
         <div className='flex flex-row '>
-        <p className='p-2 text-slate-500'>{numberID}</p>
+        <p className='p-2 text-slate-500'>{number}</p>
         <h4 className='p-2'>Weight: </h4>
           <input
                             required
@@ -45,8 +65,9 @@ export default function SetRow({number,delSet})
                             className='text-black mb-4 w-1/2 h-10 rounded pl-4   '
                             type='number'
                         />
-      <button onClick={() => delSet(numberID)} className="bg-white text-black hover:bg-red-500 px-3  rounded m-auto ease-in-out duration-300 ">-</button>
+      <button onClick={() => delSet(number)} className="bg-white h-10 mb-5 w-10 mx-5 text-black hover:bg-red-500 px-3  rounded m-auto ease-in-out duration-300 ">-</button>
           </div>
+
       
 
 

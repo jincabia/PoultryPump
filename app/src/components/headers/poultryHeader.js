@@ -10,16 +10,16 @@ export default function Header() {
         
             {/* project name and logo*/}
             <div className="flex flex-row  justify-self-start">
-                <Image className=" m-0 p-0"width={60} height={30} src={require('./logo.png')} alt="Dumbbell"/>
-                {/* // <a href="https://www.vecteezy.com/vector-art/3179657-dumbbell-equipment-gym-line-style-icon">dumbbell equipment gym line style icon Vectors by Vecteezy</a>*/}
-                <h1 className="font-semibold text-l p-4 " >Poultry Pump</h1>
+                <Image className="m-0 pl-5"width={80} height={30} src={require('./armlogo.png')} alt="Dumbbell"/>
+                {/* {/* https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fbicep-icon&psig=AOvVaw3yTOW1ZiLQmjq463vJ317S&ust=1711873489437000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCO7I3Jm4UDFQAAAAAdAAAAABAE                */}
+                 <h1 className="font-semibold text-l p-6 " >Poultry Pump</h1> 
                 {/* This p-4 is for to align everything */}
             </div>
 
         </div>
         {/* Middle div, Home search and create */}
         <div className="justify-self-center  ">
-              <ul className='flex flex-row pt-4'>
+              <ul className='flex flex-row pt-6'>
                 <li className='mx-5'>Home</li>
                 <li className='ml-5'>Exercises</li>
                 <li className='mx-5'>Workouts</li>
@@ -30,7 +30,7 @@ export default function Header() {
         {/* Top right, Contact button */}
 
         <div className='justify-self-end'>
-        <p className="p-4">Contact Me</p>
+        <p className="p-6 pr-20">Contact Me</p>
         </div>
 
 
