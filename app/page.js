@@ -1,7 +1,3 @@
-'use client'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import  {loadExercises} from './src/components/fetchExcercises';
 import Header from "./src/components/headers/ppHeader";
 
 export default function App()
@@ -67,6 +63,29 @@ export default function App()
       <div>
 
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 }
