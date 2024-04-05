@@ -5,19 +5,12 @@ import Exercise from '../components/exercise/exercise';
 import { useUserAuth } from "../_utils/auth-context"; // Imported useUserAuth custom hook
 import { getItems, addItem } from '../_services/poultry-pump-service'; // Imported getItems and addItem functions from shopping-list-service
 import Header from '../components/headers/poultryHeader';
-import Workout from '../components/workout/workout';
-import FinishWorkout from '../components/workout/finishWorkout';
+import PendingWorkoutForm from '../components/workout/pendingWorkoutForm';
 
 
 
 
 export default function App() {
-
-
-
-  const { user } = useUserAuth(); // Extracted user, gitHubSignIn, and firebaseSignOut from useUserAuth hook
-  // console.log(user);
-
 
   //List of all exercises
   const [exercises, setExercises] = useState([]);
@@ -26,31 +19,38 @@ export default function App() {
   //Name for 
   const [muscleName, setmuscleName] = useState ("Abdominals");
 
-  //exercises added
-  const [chosenExercises,setChosenExercises] = useState([]);
+  // const updatedExercises = exercises.filter(exercise => exercise !== exerciseToRemove);
+  //Stuff for the workout part
+
+  const [pendingWorkout,setPendingWorkout] = useState([]);
 
   const addChosenExercise = (exercise) =>
   {
-    setChosenExercises(prevExercises => [...prevExercises, exercise]);
+
+    if(!pendingWorkout.includes(exercise)) setPendingWorkout(prevExercises => [...prevExercises, exercise]);
+    else console.log({exercise},'is already included');
+
+
     // console.log(chosenExercises);
   };
 
-
-  //Deletes the set
-  const delChosenExerciseSet = (number) =>
+  const delChosenExercise = (exerciseToRemove) =>
   {
-    setChosenExercises((chosenExercises) => chosenExercises != number)
-    // setRows.filter((number) => number != numbToRemove
+    const updatedChosen = pendingWorkout.filter(exercise=> exercise !== exerciseToRemove);
+    setPendingWorkout(updatedChosen);
+    console.log(pendingWorkout);
   }
 
-  //Delete the exercise
-  const delChosenExercise = (name) => {
-    setChosenExercises((prevChosenExercises) =>
-      prevChosenExercises.filter((exercise) => exercise !== name)
-    );
-  };
+  const createWorkout = (workoutName,exercises) =>
+  {
+
+  }
 
 
+
+
+
+  //Functions for Exercises and show the exercises
 
   //When a user changes the select option
   const changeMuscle = event =>
@@ -83,17 +83,15 @@ export default function App() {
  
   return (
     <div>
-      {
-        // user.displayName ? (
-        // <h1> Hi {user.displayName}</h1>
-        // ) : (
-        //   <h1>Hey {user.email}</h1>
 
-        // )
-      }
+      
 
     {/* Component, displays the header */}
       <Header></Header>
+
+      {/* <h1>{pendingWorkout}</h1> */}
+
+      <PendingWorkoutForm exercises={pendingWorkout} delChosen={delChosenExercise}></PendingWorkoutForm>
 
       <h3>Search for Exercises by muscle</h3>
 
@@ -118,13 +116,6 @@ export default function App() {
   <option value="triceps" className='font-family: Arial'>Triceps</option>
 </select>       
       </form>
-
-      <Workout  delExercise={delChosenExercise} delSet={delChosenExerciseSet} exercises={chosenExercises} finWorkout={FinishWorkout}/>
-
-     
-      
-  
-
       {/* Display Exercises */}
       <div>
       {muscleName ? (
