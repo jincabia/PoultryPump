@@ -2,7 +2,7 @@
 import { useState } from "react"
 import ChosenExercise from "../exercise/chosenExercise";
 
-export default function PendingWorkoutForm({exercises,delChosen})
+export default function PendingWorkoutForm({exercises,delChosen,submitWorkout})
 {
     //these exercises are chosen
     //then it sends these to a handler to submit it into firebase
@@ -33,7 +33,7 @@ export default function PendingWorkoutForm({exercises,delChosen})
                     {listExercises}
                 </div>)}
 
-                <button className="bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-700">Create workout</button>
+                <button onClick={() => submitWorkout(workoutName,exercises)} className="bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-700">Create workout</button>
 
                 
                

@@ -7,7 +7,7 @@ import Header from './components/headers/poultryHeader';
 
 export default function App() {
   //i have a problem here
-    const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() || {};
+    const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
 
     
@@ -20,6 +20,8 @@ export default function App() {
     {
         firebaseSignOut();
     }
+
+    // console.log(user);
 
     
 

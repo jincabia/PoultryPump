@@ -3,14 +3,33 @@ import { useState, useEffect,useId } from 'react';
 import { loadExercises } from '../components/exercise/fetchExcercises';
 import Exercise from '../components/exercise/exercise';
 import { useUserAuth } from "../_utils/auth-context"; // Imported useUserAuth custom hook
-import { getItems, addItem } from '../_services/poultry-pump-service'; // Imported getItems and addItem functions from shopping-list-service
+import { getWorkouts, addWorkout } from '../_services/poultry-pump-service'; // Imported getItems and addItem functions from shopping-list-service
 import Header from '../components/headers/poultryHeader';
 import PendingWorkoutForm from '../components/workout/pendingWorkoutForm';
+import CompletedWorkout from '../components/workout/completedWorkout';
 
 
 
 
 export default function App() {
+
+  //TO DO
+
+  /*
+  Add a finsihed workout component.
+  Adding, and getting things
+  
+  
+  
+  
+  
+  
+  
+  
+  */ 
+
+  const { user } = useUserAuth();
+  // console.log(user);
 
   //List of all exercises
   const [exercises, setExercises] = useState([]);
@@ -19,10 +38,14 @@ export default function App() {
   //Name for 
   const [muscleName, setmuscleName] = useState ("Abdominals");
 
+  
+
   // const updatedExercises = exercises.filter(exercise => exercise !== exerciseToRemove);
   //Stuff for the workout part
 
   const [pendingWorkout,setPendingWorkout] = useState([]);
+
+  const [plannedWorkouts,setPlannedWorkouts] = useState([]);
 
   const addChosenExercise = (exercise) =>
   {
@@ -41,12 +64,37 @@ export default function App() {
     console.log(pendingWorkout);
   }
 
-  const createWorkout = (workoutName,exercises) =>
-  {
+  const createWorkout = async (workoutName, exercises) => {
+    try {
+      // Create an object with workoutName as a property and exercises as its value
+      const workoutData = { workoutName, exercises };
+  
+      // Call addItem with the user ID and the workout data object
+      await addWorkout(user.uid, workoutData);
+      
+      console.log("Workout added successfully:", workoutData);
+    } catch (error) {
+      console.error("Error adding workout:", error);
+    }
+  };
+  
+      // Function to fetch workouts from Firestore
+    const fetchWorkouts = async () => {
+      try {
+        // Fetch workouts using the getItems function
+        const workoutsData = await getWorkouts(user.uid); // Assuming you have userId defined somewhere
+        // setWorkouts(workoutsData); // Set the retrieved workouts in state
+        setPlannedWorkouts(workoutsData)
+        console.log(workoutsData)
+      } catch (error) {
+        console.error("Error fetching workouts:", error);
+      }
+    };
 
-  }
-
-
+    // Call fetchWorkouts function to fetch workouts when the component mounts
+    useEffect(() => {
+      fetchWorkouts();
+    }, []);
 
 
 
@@ -70,16 +118,12 @@ export default function App() {
     
   }
 
-
-
   // Display the first option of exercises
     useEffect(() =>
     {
       loadExercises(muscle,setExercises,setmuscleName);
-      
-      
-
     },[]);
+
  
   return (
     <div>
@@ -89,9 +133,19 @@ export default function App() {
     {/* Component, displays the header */}
       <Header></Header>
 
+        {plannedWorkouts.map((workout, index) => (
+          <div key={index}>
+            {console.log(workout)}
+            <CompletedWorkout workoutName={workout.workoutName} exercises={workout.exercises}></CompletedWorkout>
+          </div>
+        ))}
+
+
       {/* <h1>{pendingWorkout}</h1> */}
 
-      <PendingWorkoutForm exercises={pendingWorkout} delChosen={delChosenExercise}></PendingWorkoutForm>
+      <PendingWorkoutForm exercises={pendingWorkout} delChosen={delChosenExercise} submitWorkout={createWorkout}></PendingWorkoutForm>
+
+      <button className='bg-green-500 p-4 m-5' onClick={fetchWorkouts}>get data</button>
 
       <h3>Search for Exercises by muscle</h3>
 
@@ -148,28 +202,3 @@ export default function App() {
     </div>
   );
 }
-
-
-  //DO THIS PART, i took it from week 10
-  //Make a Plan part first, adding exercises to a plan
-
-  // const loadItems = async () => { // Created function to load items from Firestore
-  //   if (user) { // Check if user is authenticated
-  //     const itemsData = await getItems(user.uid); // Fetch items from Firestore using user's UID
-  //     // setItems(itemsData); // Set items state with fetched items
-  //   }
-  // };
-
-  // useEffect(() => { // Added useEffect hook to load items when user authentication state changes
-  //   loadItems(); // Call loadItems function
-  // }, [user]); // Added user as a dependency for useEffect to reload items when user changes
-
-  // const handleAddItem = async (newItem) => { // Created function to handle addition of new item
-  //   try {
-  //     const itemId = await addItem(user.uid, newItem); // Add new item to Firestore
-  //     //setWorkout?
-  //     // setItems(prevItems => [...prevItems, { id: itemId, ...newItem }]); // Update items state with newly added item
-  //   } catch (error) { // Handle errors
-  //     console.error("Error adding item:", error); // Log error to console
-  //   }
-  // };
