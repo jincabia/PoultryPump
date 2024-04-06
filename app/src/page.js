@@ -21,12 +21,6 @@ export default function App() {
         firebaseSignOut();
     }
 
-    // console.log(user);
-
-    
-
-    // console.log(user);
-
     return (
         <main>
             <strong>

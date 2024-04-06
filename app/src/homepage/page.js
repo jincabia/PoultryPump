@@ -11,7 +11,7 @@ import CompletedWorkout from '../components/workout/completedWorkout';
 
 
 
-export default function App() {
+export default function Home() {
 
   //TO DO
 
@@ -52,27 +52,39 @@ export default function App() {
 
     if(!pendingWorkout.includes(exercise)) setPendingWorkout(prevExercises => [...prevExercises, exercise]);
     else console.log({exercise},'is already included');
-
-
-    // console.log(chosenExercises);
   };
 
   const delChosenExercise = (exerciseToRemove) =>
   {
     const updatedChosen = pendingWorkout.filter(exercise=> exercise !== exerciseToRemove);
     setPendingWorkout(updatedChosen);
-    console.log(pendingWorkout);
   }
 
-  const createWorkout = async (workoutName, exercises) => {
+  const createWorkout = async (workoutName, exercises,setWorkoutName) => {
     try {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString();
+      
       // Create an object with workoutName as a property and exercises as its value
+      if(workoutName =="")
+      {
+        workoutName = formattedDate;
+      }
       const workoutData = { workoutName, exercises };
   
       // Call addItem with the user ID and the workout data object
       await addWorkout(user.uid, workoutData);
       
       console.log("Workout added successfully:", workoutData);
+
+      setPendingWorkout([])
+      setWorkoutName("");
+
+      
+
+
+
+
     } catch (error) {
       console.error("Error adding workout:", error);
     }
@@ -85,7 +97,6 @@ export default function App() {
         const workoutsData = await getWorkouts(user.uid); // Assuming you have userId defined somewhere
         // setWorkouts(workoutsData); // Set the retrieved workouts in state
         setPlannedWorkouts(workoutsData)
-        console.log(workoutsData)
       } catch (error) {
         console.error("Error fetching workouts:", error);
       }
@@ -133,19 +144,9 @@ export default function App() {
     {/* Component, displays the header */}
       <Header></Header>
 
-        {plannedWorkouts.map((workout, index) => (
-          <div key={index}>
-            {console.log(workout)}
-            <CompletedWorkout workoutName={workout.workoutName} exercises={workout.exercises}></CompletedWorkout>
-          </div>
-        ))}
-
-
       {/* <h1>{pendingWorkout}</h1> */}
 
       <PendingWorkoutForm exercises={pendingWorkout} delChosen={delChosenExercise} submitWorkout={createWorkout}></PendingWorkoutForm>
-
-      <button className='bg-green-500 p-4 m-5' onClick={fetchWorkouts}>get data</button>
 
       <h3>Search for Exercises by muscle</h3>
 

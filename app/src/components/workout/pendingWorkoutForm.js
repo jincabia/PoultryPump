@@ -33,7 +33,7 @@ export default function PendingWorkoutForm({exercises,delChosen,submitWorkout})
                     {listExercises}
                 </div>)}
 
-                <button onClick={() => submitWorkout(workoutName,exercises)} className="bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-700">Create workout</button>
+                <button onClick={() => submitWorkout(workoutName,exercises,setWorkoutName)} className="bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-700">Create workout</button>
 
                 
                

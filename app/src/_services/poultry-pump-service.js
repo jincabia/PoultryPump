@@ -1,5 +1,5 @@
 import { db } from "../_utils/firebase";
-import { query,where,collection, getDocs, addDoc } from "firebase/firestore";
+import { query,deleteDoc,collection, getDocs, addDoc,doc } from "firebase/firestore";
 
 
 export async function getWorkouts(userId) {
@@ -15,4 +15,16 @@ export async function addWorkout(userId, workout) {
   const itemsCollection = collection(db, "users", userId, "Workouts");
   const docRef = await addDoc(itemsCollection, workout);
   return docRef.id;
+}
+
+export async function deleteWorkout(userId, workoutId) {
+  const workoutDocRef = doc(db, "users", userId, "Workouts", workoutId);
+
+  try {
+    await deleteDoc(workoutDocRef);
+    console.log("Workout deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting workout:", error);
+    throw error; // Rethrow the error to handle it further up the call stack
+  }
 }

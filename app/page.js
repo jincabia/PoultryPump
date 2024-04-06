@@ -1,4 +1,4 @@
-import Header from "./src/components/headers/ppHeader";
+import LandingHeader from "./src/components/headers/ppHeader";
 
 export default function App()
 {
@@ -6,7 +6,7 @@ export default function App()
   //make a header and a footer for the page
   return(
     <div>
-      <Header/>
+      <LandingHeader/>
 
       {/* https://tailwindcss.com/docs/transition-property */}
 

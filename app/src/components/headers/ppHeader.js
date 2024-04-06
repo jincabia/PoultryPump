@@ -1,7 +1,7 @@
 
 
 
-export default function Header() {
+export default function LandingHeader() {
   return (
     <div className="w-screen p-2 flex  justify-evenly align-middle pb-40">
 
