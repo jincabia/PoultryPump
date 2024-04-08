@@ -24,7 +24,8 @@ export default function CompletedWorkout({ workoutName, exercises, deleteExercis
         ) : (
           <div className="my-2 p-4 text-white bg-gray-700 bg-opacity-80 rounded w-auto hover:bg-slate-500 flex items-center cursor-pointer">
             <h2 className="font-bold text-xl flex-grow mr-4">{exercises[0]}</h2>
-            <p className="text-gray-400">+ {exercises.length - 1} more</p>
+            {exercises.length>1 && <p className="text-gray-400">+ {exercises.length - 1} more</p>
+}
           </div>
         )}
       </div>
