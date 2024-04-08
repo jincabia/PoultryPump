@@ -8,17 +8,17 @@ import Home from './homepage/page';
 
 export default function App() {
 
-    // const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() || {};
+    const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() || {};
     
-    // function handleSignIn() {
-    //     gitHubSignIn();
+    function handleSignIn() {
+        gitHubSignIn();
         
-    // }
+    }
 
-    // function handleSignOut()
-    // {
-    //     firebaseSignOut();
-    // }
+    function handleSignOut()
+    {
+        firebaseSignOut();
+    }
 
     
 
@@ -29,7 +29,7 @@ export default function App() {
             {/* <strong>
                 <Header></Header>
             <h1 className='text-5xl'>Poultry Pump</h1>
-                </strong>
+                </strong> */}
             {!user && <div>
                     <Header></Header>
                     <button className='m-4 p-2  bg-slate-600 hover:bg-slate-400 ' onClick={handleSignIn}>Sign in with GitHub</button>
@@ -37,7 +37,7 @@ export default function App() {
                 </div>}
             {user && (
                 <div>
-                    {/* <p>
+                     {/* <p>
                         You are signed in as <strong>{user.email}</strong>
                     </p>
                     <p>
@@ -45,11 +45,12 @@ export default function App() {
 
                     </p>
                     <button onClick={handleSignOut}>Sign out</button> */}
-{/* 
+
+                    
                     <Home/>
                 </div>
-            )} */}
-            Bruh 
+            )}
+            {/* Bruh  */}
         </main>
     );
 }
