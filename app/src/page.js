@@ -6,20 +6,18 @@ import { useUserAuth } from './_utils/auth-context';
 import Header from './components/headers/poultryHeader';
 
 export default function App() {
-  //i have a problem here
-    const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() || {};
 
-
+    // const { user, gitHubSignIn, firebaseSignOut } = useUserAuth() || {};
     
-    function handleSignIn() {
-        gitHubSignIn();
+    // function handleSignIn() {
+    //     gitHubSignIn();
         
-    }
+    // }
 
-    function handleSignOut()
-    {
-        firebaseSignOut();
-    }
+    // function handleSignOut()
+    // {
+    //     firebaseSignOut();
+    // }
 
     
 
@@ -27,7 +25,7 @@ export default function App() {
 
     return (
         <main>
-            <strong>
+            {/* <strong>
                 <Header></Header>
             <h1 className='text-5xl'>Poultry Pump</h1>
                 </strong>
@@ -43,7 +41,8 @@ export default function App() {
                     </p>
                     <button onClick={handleSignOut}>Sign out</button>
                 </div>
-            )}
+            )} */}
+            Bruh
         </main>
     );
 }
