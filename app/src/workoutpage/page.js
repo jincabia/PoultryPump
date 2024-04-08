@@ -7,6 +7,7 @@ import { getWorkouts, addWorkout, deleteWorkout } from '../_services/poultry-pum
 import Header from '../components/headers/poultryHeader';
 import PendingWorkoutForm from '../components/workout/pendingWorkoutForm';
 import CompletedWorkout from '../components/workout/completedWorkout';
+import Link from 'next/link';
 
 
 
@@ -43,7 +44,7 @@ export default function CreateWorkout()
           // Call fetchWorkouts function to fetch workouts when the component mounts
           useEffect(() => {
             fetchWorkouts();
-          }, []);
+          }, user);
 
 
           const createWorkout = async (workoutName, exercises) => {
@@ -79,28 +80,28 @@ export default function CreateWorkout()
           return (
             <main>
                 <Header />
-                <div className='flex justify-start w-1/2 m-auto'>
-                    <h1 className='text-3xl text-start'>Your Workouts</h1>
+                <div className='w-1/2 m-auto'>
+                    <h1 className='text-3xl font-semibold text-center mb-4'>Your Workouts</h1>
 
 
                 </div>
                 {loading && <p>Loading...</p>}
-                {successMessage && <p className="text-green-600">{successMessage}</p>}
+                {successMessage && <p className="text-green-600 font-bold  text-center">{successMessage}</p>}
                 {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-                {plannedWorkouts.length > 0 && <div className=' justify-center grid grid-cols-3 gap-4'>
+                {plannedWorkouts.length > 0 && <div className=' justify-center grid grid-cols-3 px-10 gap-4'>
                     {/* Show all the Workouts then at the bottom add workouts */}
                     {plannedWorkouts.map((workout, index) => (
                         <div key={index} className="mt-0 ml-0 ">
                             {/* Add mt-0 and ml-0 classes to remove any top and left margin */}
-                            <CompletedWorkout workoutName={workout.workoutName} exercises={workout.exercises}></CompletedWorkout>
-                            <button className="text-slate-100 mt-2 hover:bg-red-700  bg-red-500 px-3 pb-1 rounded ml-5 ease-in-out duration-300 " onClick={() => handleDeleteWorkout(workout.id)}>
+                            <CompletedWorkout workoutName={workout.workoutName} exercises={workout.exercises} deleteExercise={handleDeleteWorkout} ID={workout.id}></CompletedWorkout>
+                            {/* <button className="text-slate-100 mt-2 hover:bg-red-700  bg-red-500 px-3 pb-1 rounded ml-5 ease-in-out duration-300 " onClick={() => handleDeleteWorkout(workout.id)}>
                             Delete
-                        </button>
+                        </button> */}
                         </div>
                     ))}
                 </div>}
                 <div className='w-1/2 m-auto flex justify-center'>
-                  <button className='text-center text-slate-900 bg-green-400 p-2 rounded ease-in-out duration-300 hover:text-white'>Create Workout</button>
+                  <button className='text-center text-white bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-800'><Link href="/src">Create Workout</Link></button>
                   {/* className="text-slate-900  group-hover:text-white group-hover:bg-green-400 px-3 pb-1 rounded ml-auto ease-in-out duration-300 " */}
 
                 </div>
