@@ -1,5 +1,6 @@
 import LandingHeader from "./src/components/headers/ppHeader";
 import Link from 'next/link'
+import Footer from "./src/components/footer/myfooter";
 
 
 export default function App() {
@@ -8,46 +9,46 @@ export default function App() {
   return (
     <div>
       <LandingHeader />
+       <div> 
+            <div className="text-center table-cell align-middle border-2 w-1/4 ">
 
-      {/* body/main */}
-      {/* Show the app images of the app, what it does, and the reason I made it */}
-      <div className="flex justify-evenly">
 
-        {/* Text talking about the app */}
-        <div className="pl-10">
 
-          <div className="text-center">
-            <p className="w-1/2 font-bold text-4xl p-4">
-              Poultry Pump - Exercise Planner
-            </p>
-          </div>
+            {/* App name */}
+              <p className=" font-bold text-4xl "> 
+                  Poultry Pump 
+              </p>
 
-          <div className="text-center">
-            <p className="w-1/2 text-sm p-4 text-gray-600">
-              Simplify your fitness routine with our sleek workout planner. Stay focused and achieve your goals effortlessly
-            </p>
-          </div>
+              <p className=" font-bold text-3xl"> 
+                Exercise Planner
+                </p>
 
-          <div className="w-5/6 ml-auto">
-            <button className="text-sm p-2 border-2 rounded hover:bg-slate-600">
-              <Link href="/src">
-                Visit Poultry Pump
-              </Link>
-            </button>
-          </div>
+
+
+            {/* App description */}
+                <p className="text-sm  text-gray-600 mt-2">
+                  Simplify your fitness routine with our sleek workout planner. 
+                </p>
+                <p className="text-sm  text-gray-600 mb-2">
+                  Stay focused and achieve your goals effortlessly.
+                </p>
+
+            {/* Link to App */}
+
+                <button className="text-sm border-2 rounded m-2 p-2 hover:bg-slate-600"> 
+                  <Link href="/src">
+                    Visit Poultry Pump
+                  </Link>
+                </button>
+
+                
+
+            </div>
+
+
         </div>
+        <Footer/>
 
-        {/* Image displaying the app */}
-        <div>
-          <h1>Dummy Img</h1>
-        </div>
-
-      </div>
-
-      {/* Why I made it, and what it uses */}
-      <div>
-        {/* Add content here */}
-      </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,14 +9,23 @@ export default function Header() {
 
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
-  function handleSignOut()
+  const handleSignOut = () =>
     {
         firebaseSignOut();
     }
 
+    const handleSignIn = () =>
+    {
+      gitHubSignIn();
+    }
+
+
+
   return (
       <div className="w-screen flex  justify-between mb-10 mt-5 ">
-  
+
+
+      {/* {user && <p>{user.email}</p>} */}
         {/* Top left, name */}
         <div className="">
         
@@ -36,11 +46,17 @@ export default function Header() {
           </ul>
         </div>
 
-        {/* Top right, Contact button */}
         <div className='justify-self-end'>
-          {/* <p className="p-6 pr-20">Contact Me</p> */}
-          {/* <p >Sign out</p> */}
-          <button onClick={()=>handleSignOut} className='my-6 mr-20 hover:text-red-500 ease-in-out duration-300 hover:underline-offset-2 hover:underline'>Sign out</button>
+          {!user &&           
+          <button 
+          onClick={handleSignIn}
+           className='my-6 mr-20 hover:text-red-500 ease-in-out duration-300 hover:underline-offset-2 hover:underline'>
+            Sign In
+            </button>
+          }
+
+          {user && <button onClick={handleSignOut} className='my-6 mr-20 hover:text-red-500 ease-in-out duration-300 hover:underline-offset-2 hover:underline'>Sign out</button>
+ }
         </div>
 
       </div>
