@@ -69,7 +69,7 @@ export default function App() {
                     Firebase Authentication and Cloud Storage
                     </h1>
                     <p className="text-sm w-4/5 text-slate-400">
-                    This project utilizes Firebase for it's seamless user authentication and efficient data handling.                    </p>                
+                    This project utilizes Firebase for its seamless user authentication and efficient data handling.                    </p>                
                 </div>
 
 
@@ -80,7 +80,7 @@ export default function App() {
                     React.js
                   </h1>
                   <p className="text-sm w-4/5 text-slate-400">
-                  React.js was utilized for the project's UI, stateful logic, and dynamic rendering based off user inputs.
+                  React.js was utilized for the projects UI, stateful logic, and dynamic rendering based off user inputs.
                   </p>    
                 </div>
 
