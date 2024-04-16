@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 
-export default function Exercise({ exercise, addChosen }) {
+export default function ExerciseNoUser({ exercise, addChosen }) {
 
   const [expanded, setExpanded] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Exercise({ exercise, addChosen }) {
       // No more flex here
       (<div className="flex-col">
         <p className="my-4 text-sm text-gray-300">{exercise.instructions}</p>
-        <button onClick={() => addChosen(exercise)} className=" bg-green-600 hover:bg-green-400 px-3 pb-1 rounded  ease-in-out text-center duration-300 w-full">Add to Workout</button>
+        {/* <button onClick={() => addChosen(exercise)} className=" bg-green-600 hover:bg-green-400 px-3 pb-1 rounded  ease-in-out text-center duration-300 w-full">Add to Workout</button> */}
       </div>)
       }
 

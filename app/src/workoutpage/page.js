@@ -15,12 +15,17 @@ import Link from 'next/link';
 export default function CreateWorkout()
 {
 
-    const { user } = useUserAuth();
+    const { user, gitHubSignIn} = useUserAuth();
     const [pendingWorkout,setPendingWorkout] = useState([]);
     const [plannedWorkouts,setPlannedWorkouts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSignIn = () =>
+    {
+      gitHubSignIn();
+    }
 
 
 
@@ -43,23 +48,18 @@ export default function CreateWorkout()
       
           // Call fetchWorkouts function to fetch workouts when the component mounts
           useEffect(() => {
-            fetchWorkouts();
-          }, user);
-
-
-          const createWorkout = async (workoutName, exercises) => {
-            try {
-              // Create an object with workoutName as a property and exercises as its value
-              const workoutData = { workoutName, exercises };
-          
-              // Call addItem with the user ID and the workout data object
-              await addWorkout(user.uid, workoutData);
-              
-              console.log("Workout added successfully:", workoutData);
-            } catch (error) {
-              console.error("Error adding workout:", error);
+            if (user) {
+              // Fetch workouts only if the user is signed in
+              fetchWorkouts();
+            } else {
+              // If user signs out, reset the plannedWorkouts state to an empty array
+              setPlannedWorkouts([]);
             }
-          };
+          }, [user]);
+          
+
+
+          
 
           const handleDeleteWorkout = async (workoutId) => {
             setLoading(true);
@@ -80,7 +80,7 @@ export default function CreateWorkout()
           return (
             <main>
                 <Header />
-                <div className='w-1/2 m-auto'>
+                <div className=''>
                     <h1 className='text-3xl font-semibold text-center mb-4'>Your Workouts</h1>
 
 
@@ -88,6 +88,11 @@ export default function CreateWorkout()
                 {loading && <p>Loading...</p>}
                 {successMessage && <p className="text-green-600 font-bold  text-center">{successMessage}</p>}
                 {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+                {!plannedWorkouts || plannedWorkouts.length ==0 && user && 
+                <div className='text-center flex flex-col justify-center align-center items-center '>
+                  <h1 className='font-bold text-center  w-1/6 p-2 rounded text-slate-500'> No workouts created</h1>
+                </div>}
+
                 {plannedWorkouts.length > 0 && <div className=' justify-center grid grid-cols-3 px-10 gap-4'>
                     {/* Show all the Workouts then at the bottom add workouts */}
                     {plannedWorkouts.map((workout, index) => (
@@ -99,12 +104,37 @@ export default function CreateWorkout()
                         </button> */}
                         </div>
                     ))}
+                    
+
                 </div>}
+                {!user && 
                 <div className='w-1/2 m-auto flex justify-center'>
-                  <button className='text-center text-white bg-green-400 p-2 rounded ease-in-out duration-300 hover:bg-green-800'><Link href="/src">Create Workout</Link></button>
+                  <button className='text-center
+                   text-white
+                    bg-green-400 
+                    p-2 
+                    rounded 
+                    ease-in-out 
+                    duration-300
+                     hover:bg-green-800'
+                     onClick={handleSignIn} >Sign in to Create a Workout</button>
                   {/* className="text-slate-900  group-hover:text-white group-hover:bg-green-400 px-3 pb-1 rounded ml-auto ease-in-out duration-300 " */}
 
-                </div>
+                </div>}
+
+
+                  {!user ?
+                  (<div className='text-center flex flex-col justify-center align-center items-center mt-4 '>
+                  <h1 className='font-bold text-center bg-blue-500 w-1/6 p-2 my-2 rounded hover:bg-blue-400'> <Link href='/src/create'>View exercises</Link></h1>
+                </div>)
+                  :
+                  (<div className='text-center flex flex-col justify-center align-center items-center mt-4 '>
+                  <h1 className='font-bold text-center bg-blue-500 w-1/6 p-2 my-2 rounded hover:bg-blue-400'> <Link href='/src/create'>Create a workout</Link></h1>
+                </div>)}
+
+                <div className='mb-64'></div>
+                
+                
                 
             </main>
         );
