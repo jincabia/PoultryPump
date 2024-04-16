@@ -80,7 +80,7 @@ export default function CreateWorkout()
           return (
             <main>
                 <Header />
-                <div className='w-1/2 m-auto'>
+                <div className=''>
                     <h1 className='text-3xl font-semibold text-center mb-4'>Your Workouts</h1>
 
 
@@ -88,6 +88,11 @@ export default function CreateWorkout()
                 {loading && <p>Loading...</p>}
                 {successMessage && <p className="text-green-600 font-bold  text-center">{successMessage}</p>}
                 {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+                {!plannedWorkouts || plannedWorkouts.length ==0 && user && 
+                <div className='text-center flex flex-col justify-center align-center items-center '>
+                  <h1 className='font-bold text-center  w-1/6 p-2 rounded text-slate-500'> No workouts created</h1>
+                </div>}
+
                 {plannedWorkouts.length > 0 && <div className=' justify-center grid grid-cols-3 px-10 gap-4'>
                     {/* Show all the Workouts then at the bottom add workouts */}
                     {plannedWorkouts.map((workout, index) => (
@@ -99,8 +104,11 @@ export default function CreateWorkout()
                         </button> */}
                         </div>
                     ))}
+                    
+
                 </div>}
-                {!user && <div className='w-1/2 m-auto flex justify-center'>
+                {!user && 
+                <div className='w-1/2 m-auto flex justify-center'>
                   <button className='text-center
                    text-white
                     bg-green-400 
@@ -113,6 +121,19 @@ export default function CreateWorkout()
                   {/* className="text-slate-900  group-hover:text-white group-hover:bg-green-400 px-3 pb-1 rounded ml-auto ease-in-out duration-300 " */}
 
                 </div>}
+
+
+                  {!user ?
+                  (<div className='text-center flex flex-col justify-center align-center items-center mt-4 '>
+                  <h1 className='font-bold text-center bg-blue-500 w-1/6 p-2 my-2 rounded hover:bg-blue-400'> <Link href='/src/create'>View exercises</Link></h1>
+                </div>)
+                  :
+                  (<div className='text-center flex flex-col justify-center align-center items-center mt-4 '>
+                  <h1 className='font-bold text-center bg-blue-500 w-1/6 p-2 my-2 rounded hover:bg-blue-400'> <Link href='/src/create'>Create a workout</Link></h1>
+                </div>)}
+
+                <div className='mb-64'></div>
+                
                 
                 
             </main>
