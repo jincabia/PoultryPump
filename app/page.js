@@ -1,5 +1,6 @@
+
 import LandingHeader from "./src/components/headers/ppHeader";
-import Link from 'next/link'
+import Link from 'next/link';
 import Footer from "./src/components/footer/myfooter";
 import Image from "next/image";
 
@@ -16,14 +17,14 @@ export default function App() {
         <div className="text-center w-1/3  p-4">
           {/* App name */}
           <p className="font-bold text-4xl">Poultry Pump</p>
-          <p className="font-bold text-4xl">-</p>
+          {/* <p className="font-bold text-4xl">&apos;-&apos;</p> */}
           <p className="font-bold text-4xl">Exercise Planner</p>
           {/* App description */}
           <p className="text-sm text-gray-600 mt-2">
-            Simplify your fitness routine with our sleek workout planner.
+            Simplify your fitness routine with our sleek workout planner
           </p>
           <p className="text-sm text-gray-600 mb-2">
-            Stay focused and achieve your goals effortlessly.
+            Stay focused and achieve your goals effortlessly
           </p>
           {/* Link to App */}
           <button className="text-sm  bg-blue-500 rounded m-2 p-2 hover:bg-blue-400 ease-in-out duration-300"> 
@@ -52,7 +53,7 @@ export default function App() {
         
         {/* Title div */}
         <div className=" flex items-center w-screen justify-center mb-5 snap-always">
-          <h1 className="pl-1/2 w-max font-bold text-4xl"> What does Poultry Pump Use?</h1>
+          <h1 className="pl-1/2 w-max font-bold text-4xl"> Technology </h1>
         </div>
 
 
@@ -69,7 +70,8 @@ export default function App() {
                     Firebase Authentication and Cloud Storage
                     </h1>
                     <p className="text-sm w-4/5 text-slate-400">
-                    This project utilizes Firebase for its seamless user authentication and efficient data handling.                    </p>                
+                    This project utilizes Firebase for its seamless user authentication and efficient data handling
+                    </p>                
                 </div>
 
 
@@ -77,10 +79,10 @@ export default function App() {
                 <div className="flex flex-col justify-center align-center text-center items-center">
                   <Image className="bg-slate-400 p-2 rounded-full border-slate-200 border-2 mb-2" src={'/reactlogo.svg'} alt="React" width={50} height={50} loading = 'lazy'/>
                   <h1 className="font-semibold text-md text-center">
-                    React.js
+                    React
                   </h1>
                   <p className="text-sm w-4/5 text-slate-400">
-                  React.js was utilized for the projects UI, stateful logic, and dynamic rendering based off user inputs.
+                  React was utilized for the projects UI stateful logic and dynamic rendering based off user inputs
                   </p>    
                 </div>
 
@@ -91,11 +93,11 @@ export default function App() {
                   <Link href={'https://rapidapi.com/apininjas/api/exercises-by-api-ninjas'}> <Image loading = 'lazy' className="bg-slate-400 hover:bg-slate-200 p-2 rounded-full border-slate-200 border-2 mb-2 ease-in-out duration-300" src={'/ninjaapi.png'} width={50} height={50} alt="API Ninja"></Image>
 </Link>
                   <h1 className="font-semibold text-md text-center">
-                    Exercises by API-Ninjas
+                    Exercises by API Ninjas
                   </h1>
 
                   <p className="text-sm w-4/5 text-slate-400">
-                    The primary API used in the project, to fetch exercises grouped by specific muscle groups.
+                    The primary API used in the project to fetch exercises grouped by specific muscle groups
                   </p>  
 
 
