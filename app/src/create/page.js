@@ -134,7 +134,7 @@ export default function Home() {
     useEffect(() =>
     {
       loadExercises(muscle,setExercises,setmuscleName);
-    },[]);
+    },[muscle]);
 
 
 

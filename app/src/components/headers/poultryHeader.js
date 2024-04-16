@@ -21,7 +21,7 @@ export default function Header() {
       <div className="flex items-center">
         {/* project name and logo*/}
         <div className="flex items-center">
-          <Image className="m-0 pl-2" width={60} height={30} src={require('./armlogo.png')} alt="Dumbbell" />
+          <Image className="m-0 pl-2" width={60} height={30} src={require('./armlogo.png')} alt="Dumbbell" priority={true} />
           <h1 className="font-semibold text-l"><Link href="/">Poultry Pump</Link></h1>
         </div>
       </div>

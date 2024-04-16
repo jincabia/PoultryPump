@@ -34,7 +34,10 @@ export default function App() {
         <div className="flex justify-end ">
           <Image
           className="mr-3/5"
-           src={'/laptop.png'} height={500} width={500} />
+           src={'/laptop.png'} height={500} width={500} 
+           
+           priority={true}
+           alt="Poultry Pump example"/>
         </div>
 
       </div>
@@ -61,7 +64,7 @@ export default function App() {
 
               {/* Firebase */}
                 <div className="flex flex-col justify-center align-center text-center items-center w-auto">
-                  <Image className="bg-slate-400 p-2 rounded-full border-slate-200 border-2 mb-2" src={'/firebaselogo.svg'} alt="Firebase Logo" width={50} height={50}/> 
+                  <Image className="bg-slate-400 p-2 rounded-full border-slate-200 border-2 mb-2" src={'/firebaselogo.svg'} alt="Firebase Logo" width={50} height={50} loading = 'lazy'/> 
                     <h1 className="font-semibold text-md text-center">
                     Firebase Authentication and Cloud Storage
                     </h1>
@@ -72,7 +75,7 @@ export default function App() {
 
               {/* React */}
                 <div className="flex flex-col justify-center align-center text-center items-center">
-                  <Image className="bg-slate-400 p-2 rounded-full border-slate-200 border-2 mb-2" src={'/reactlogo.svg'} alt="React" width={50} height={50}/>
+                  <Image className="bg-slate-400 p-2 rounded-full border-slate-200 border-2 mb-2" src={'/reactlogo.svg'} alt="React" width={50} height={50} loading = 'lazy'/>
                   <h1 className="font-semibold text-md text-center">
                     React.js
                   </h1>
@@ -85,7 +88,7 @@ export default function App() {
 
               {/* API ninja  */}
                 <div className="flex flex-col justify-center align-center text-center items-center">
-                  <Link href={'https://rapidapi.com/apininjas/api/exercises-by-api-ninjas'}> <Image className="bg-slate-400 hover:bg-slate-200 p-2 rounded-full border-slate-200 border-2 mb-2 ease-in-out duration-300" src={'/ninjaapi.png'} width={50} height={50} alt="API Ninja"></Image>
+                  <Link href={'https://rapidapi.com/apininjas/api/exercises-by-api-ninjas'}> <Image loading = 'lazy' className="bg-slate-400 hover:bg-slate-200 p-2 rounded-full border-slate-200 border-2 mb-2 ease-in-out duration-300" src={'/ninjaapi.png'} width={50} height={50} alt="API Ninja"></Image>
 </Link>
                   <h1 className="font-semibold text-md text-center">
                     Exercises by API-Ninjas
